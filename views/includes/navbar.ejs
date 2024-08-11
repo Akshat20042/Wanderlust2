@@ -1,0 +1,42 @@
+<style>
+  #search{
+    color: white;
+    background-color: #fe424d;
+    border-radius: 5rem;
+    display: inline;
+  }
+  #search-area{
+    padding: 0.5rem 3rem 0.5rem 3rem;
+    border-radius: 5rem;
+    text-align: center;
+  }
+</style>
+<nav class="navbar navbar-expand-md bg-body-light border-bottom sticky-top">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="/listings"><i class="fa-solid fa-compass"></i></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <div class="navbar-nav">
+          <a class="nav-link me-3" href="/listings">Explore</a>
+        </div>
+            
+      <div class="navbar-nav ms-auto">
+        <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search Destination" id="search-area">
+          <button class="btn" id="search" type="submit">Search</button>
+        </form>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link me-3" href="/listings/new">WanderLust your home</a>
+        <% if (loggedUser){ %>
+          <a class="nav-link me-3" href="/logout"><b>Log Out</b></a>
+        <% } else { %>
+          <a class="nav-link me-3" href="/signup"><b>Sign Up</b></a>
+          <a class="nav-link me-3" href="/login"><b>Log In</b></a>
+        <% } %>
+      </div>
+    </div>
+    </div>
+</nav>

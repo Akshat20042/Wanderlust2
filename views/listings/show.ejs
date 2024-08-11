@@ -1,0 +1,79 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <br><br>
+    <div class="row">
+        <div class="col-8 offset-3">
+            <h2><%=stay.title%></h2>
+            <img src="<%= stay.img.url %>" alt="listing_pic" style="width: 50rem; border-radius: 2rem;" class="show_img mt-2 mb-2">
+            <ul>
+                <li>Owned by <i><%=stay.owner.username%></i></li>
+                <li><%=stay.disc%></li>
+                <li>&#x20B9;<%=stay.price.toLocaleString("en-IN")%></li>        <!-- to insert commas acc. to indian std.--> 
+                <li><%=stay.loc%></li>
+                <li><%=stay.ctry%></li>
+            </ul>
+            <br>
+            <% if (loggedUser && loggedUser._id.equals(stay.owner._id)){ %>
+            <div style="display: flex;">
+                <form action="/listings/<%=stay._id%>/edit">
+                    <button class="btn btn-primary">Edit</button>
+                </form> &nbsp; &nbsp;
+                <form method="post" action="/listings/<%=stay._id%>?_method=DELETE">
+                    <button class="btn btn-danger">Delete</button>
+                </form>
+            </div>
+            <% } %>
+            <hr>
+        </div>
+        <% if (loggedUser){ %>
+        <div class="col-8 offset-3">
+            <h4>Add your thougth</h4>
+            <br>
+            <form action="/listings/<%=stay._id%>/reviews" method="post" novalidate class="needs-validation mb-3">
+                <div>
+                        <label for="rating" class="form-label">Rating</label>
+                        <fieldset id="rating" class="starability-grow row">
+                                <input type="radio" id="no-rate" class="input-no-rate" name="review[rate]" value="1" checked aria-label="No rating." />
+                                <input type="radio" id="first-rate1" name="review[rate]" value="1" />
+                                <label for="first-rate1" title="Terrible">1 star</label>
+                                <input type="radio" id="first-rate2" name="review[rate]" value="2" />
+                                <label for="first-rate2" title="Not good">2 stars</label>
+                                <input type="radio" id="first-rate3" name="review[rate]" value="3" />
+                                <label for="first-rate3" title="Average">3 stars</label>
+                                <input type="radio" id="first-rate4" name="review[rate]" value="4" />
+                                <label for="first-rate4" title="Very good">4 stars</label>
+                                <input type="radio" id="first-rate5" name="review[rate]" value="5" />
+                                <label for="first-rate5" title="Amazing">5 stars</label>
+                        </fieldset>
+                </div>
+                <div>
+                    <label for="comment" class="form-label">Comment</label>
+                    <textarea name="review[comment]" id="comment" name="review[comment]" rows="5" cols="15" class="form-control" required></textarea>
+                    <div class="invalid-feedback">Please add some comment</div>
+                </div>
+                    <br>
+                <button class="btn btn-outline-dark">Submit</button>
+            </form>
+            <hr>
+        </div>
+        <% } %>
+        <div class="col-8 offset-3">
+            <p><b>All Reviews</b></p>
+            <div class="row">
+                    <% for (r of stay.reviews){ %>
+                        <div class="card review-card col-5 mb-3 ms-3">
+                            <h5 class="card-title">@<%= r.author.username %></h5>
+                            <p class="starability-result card-text" data-rating="<%= r.rate%>"></p>
+                            <p class="card-text"><%= r.comment%></p>
+                            <% if (loggedUser && loggedUser._id.equals(r.author._id)) { %>
+                                <form method="post" action="/listings/<%=stay._id%>/reviews/<%=r._id%>?_method=DELETE" class="mb-2">
+                                    <button class="btn btn-dark btn-sm">Delete</button>
+
+                                </form>
+                            <% } %>
+                        </div>
+                    <% } %>
+                </div>
+        </div>
+    </div>
+</body>

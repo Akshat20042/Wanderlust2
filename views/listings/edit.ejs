@@ -1,0 +1,33 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <h2>Edit Listing</h2>
+    <div class="row">
+        <div class="col-8 offset-2">
+            <form method="post" action="/listings/<%=l._id%>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" name="listing[title]" id="title" class="form-control" value="<%=l.title%>" required>
+                <div class="valid-feedback">That looks good!!</div>
+                <br>
+                <label for="disc" class="form-label">Add Discription</label>
+                <div class="invalid-feedback">Description is must</div>
+                <textarea name="listing[disc]" id="disc" class="form-control" required><%=l.disc%></textarea><br>
+                <label for="price" class="form-label">Price</label>
+                <input id="price" type="number" class="form-control" name="listing[price]" value="<%=l.price%>" 
+                required>
+                <div class="invalid-feedback">Price is must</div>
+                <br>
+                <label for="img" class="form-label">Image file</label>
+                <input id="img" class="form-control" type="file" name="listing[img]">
+                <br>
+                <label for="loc" class="form-label">Location</label>
+                <input id="loc" class="form-control" type="text" name="listing[loc]" value="<%=l.loc%>" required>
+                <div class="invalid-feedback">Location is must</div><br>
+                <label for="ctry" class="form-label">Country</label>
+                <input id="ctry" class="form-control" type="text" name="listing[ctry]" value="<%=l.ctry%>" required>
+                <div class="invalid-feedback">Country name is must</div>
+                <br><br>
+                <button class="edit btn">Edit</button>
+            </form>
+        </div>
+    </div>
+</body>

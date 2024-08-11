@@ -1,0 +1,33 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <br>
+    <h2>Add Listing</h2>
+    <br>
+    <div class="row">
+        <div class="col-8 offset-2">
+            <form method="post" action="/listings" novalidate class="needs-validation" enctype="multipart/form-data">
+                <label for="title" class="form-label">Title</label>
+                <input type="text" name="listing[title]" id="title" class="form-control" placeholder="Enter a catchy title" required>
+                <div class="valid-feedback">Title looks Good!</div>                      <!--  for it we have added js code from bootstrap in public folder -->
+                <br>
+                <label for="disc" class="form-label">Add Discription</label>
+                <textarea name="listing[disc]" id="disc" class="form-control" placeholder="Enter Discription" required></textarea><br>
+                <label for="price" class="form-label">Price</label>
+                <input id="price" type="number" class="form-control" name="listing[price]" placeholder="Enter Price" required>
+                <div class="invalid-feedback">Price isn't valid</div>
+                <br>
+                <!-- <label for="img" class="form-label">Image URL</label>
+                <input id="img" class="form-control" type="text" name="listing[img]" placeholder="Enter URL of place"><br> -->
+                <label for="img" class="form-label">Image URL</label>
+                <input id="img" class="form-control" type="file" name="listing[img]" placeholder="Upload Image" required><br>
+                <label for="loc" class="form-label">Location</label>
+                <input id="loc" class="form-control" type="text" name="listing[loc]" placeholder="Enter Location" required>
+                <div class="invalid-feedback">Location isn't valid</div><br>
+                <label for="ctry" class="form-label">Country</label>
+                <input id="ctry" class="form-control" type="text" name="listing[ctry]" placeholder="Enter Country" required>
+                <div class="invalid-feedback">Country isn't valid</div><br><br>
+                <button class="btn edit">Add</button>
+            </form>
+        </div>
+    </div>
+</body>
